@@ -3,16 +3,16 @@ import { build_tree, decode, encode } from "./huffman_coding.ts";
 import { count_frequency } from "./helpers.ts";
 
 function makeSut() {
-  const TEXT = "hello";
+  let TEXT = "hello";
 
-  const frequency = count_frequency(TEXT);
-  const tree = build_tree(frequency);
+  let frequency = count_frequency(TEXT);
+  let tree = build_tree(frequency);
 
   return tree;
 }
 
 Deno.test("(build_tree) expect build a tree with the frequency of each character", () => {
-  const sut = makeSut();
+  let sut = makeSut();
 
   assertEquals(sut, {
     char: "*",
@@ -53,13 +53,13 @@ Deno.test("(build_tree) expect build a tree with the frequency of each character
 });
 
 Deno.test("(encode) expect encode a text", () => {
-  const sut = makeSut();
+  let sut = makeSut();
 
   assertEquals(encode(sut, "hello"), "1101000111");
 });
 
 Deno.test("(decode) expect decode a text", () => {
-  const sut = makeSut();
+  let sut = makeSut();
 
   assertEquals(decode(sut, "1101000111"), "hello");
 });
